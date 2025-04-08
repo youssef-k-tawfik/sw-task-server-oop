@@ -1,0 +1,26 @@
+# RewriteEngine on
+# RewriteRule .* /public/$0 [L]
+# DirectoryIndex index.php
+
+# Enable Rewrite Engine
+RewriteEngine On
+
+# Set RewriteBase to the root of the site
+RewriteBase /
+
+# Log all requests to check if POST requests are getting through
+RewriteLog /path/to/log/file
+RewriteLogLevel 3
+
+# Allow direct access to /graphql
+RewriteCond %{REQUEST_URI} ^/graphql$
+RewriteRule ^(.*)$ public/index.php [L]
+
+# Redirect all other requests to the public directory except for already existing files and directories
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /public/$1 [L]
+
+# Specify the DirectoryIndex inside the public directory
+DirectoryIndex /public/index.php
