@@ -34,7 +34,7 @@ class QueryTypeFactory
             'name' => 'Query',
             'fields' => [
                 'categories' => [
-                    'type' => Type::listOf(
+                    'type'    => Type::listOf(
                         $container->get(CategoryType::class)
                     ),
                     'resolve' => [
@@ -43,12 +43,13 @@ class QueryTypeFactory
                     ],
                 ],
                 'products' => [
-                    'type' => Type::listOf(
+                    'type'    => Type::listOf(
                         $container->get(ProductType::class)
                     ),
-                    'args' => [
+                    'args'    => [
                         'category' => Type::string(),
-                        'id' => Type::string(),
+                        'brand'    => Type::string(),
+                        'id'       => Type::string(),
                     ],
                     'resolve' => [
                         $container->get(ProductResolver::class),
@@ -56,10 +57,10 @@ class QueryTypeFactory
                     ],
                 ],
                 'orders' => [
-                    'type' => Type::listOf(
+                    'type'    => Type::listOf(
                         $container->get(OrderType::class)
                     ),
-                    'args' => [
+                    'args'    => [
                         'orderNumbers' => Type::listOf(Type::string()),
                     ],
                     'resolve' => [

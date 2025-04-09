@@ -37,11 +37,13 @@ class ProductResolver
     public function getProducts($root, $args): array
     {
         try {
-            $category = $args['category'] ?? null;
+            $category  = $args['category'] ?? null;
+            $brand     = $args['brand'] ?? null;
             $productId = $args['id'] ?? null;
 
             return $this->productService->getProducts(
                 $category,
+                $brand,
                 $productId
             );
         } catch (\Exception $e) {

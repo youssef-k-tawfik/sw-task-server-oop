@@ -14,16 +14,25 @@ final class ProductRepository extends BaseRepository
     /**
      * Retrieve all products with optional filters for category and product ID.
      *
-     * @param string|null $categoryName Filter by category name.
+     * @param string|null $category Filter by category name.
      * @param string|null $productId    Filter by product ID.
      * @return BaseProduct[] List of hydrated product entities.
      */
     public function getProducts(
-        ?string $categoryName = null,
+        ?string $category = null,
+        ?string $brand = null,
         ?string $productId = null
     ): array {
-        $query = $this->buildProductQuery($categoryName, $productId);
-        $params = $this->buildQueryParameters($categoryName, $productId);
+        $query = $this->buildProductQuery(
+            $category,
+            $brand,
+            $productId
+        );
+        $params = $this->buildQueryParameters(
+            $category,
+            $brand,
+            $productId
+        );
 
         $statement = $this->connection->prepare($query);
         $statement->execute($params);
@@ -33,12 +42,14 @@ final class ProductRepository extends BaseRepository
     /**
      * Build the SQL query for fetching products.
      *
-     * @param string|null $categoryName Filter by category name.
-     * @param string|null $productId    Filter by product ID.
+     * @param string|null $category  Filter by category name.
+     * @param string|null $brand     Filter by brand name.
+     * @param string|null $productId Filter by product ID.
      * @return string The SQL query string.
      */
     private function buildProductQuery(
-        ?string $categoryName,
+        ?string $category,
+        ?string $brand,
         ?string $productId
     ): string {
         $query = "
@@ -59,11 +70,16 @@ final class ProductRepository extends BaseRepository
             WHERE 1=1
     ";
 
-        if ($categoryName !== null) {
-            $query .= " AND c.name = :categoryName";
-        }
-        if ($productId !== null) {
-            $query .= " AND p.id = :productId";
+        $filters = [
+            ':category'  => $category  ? " AND c.name = :category"  : null,
+            ':brand'     => $brand     ? " AND b.name = :brand"     : null,
+            ':productId' => $productId ? " AND p.id   = :productId" : null,
+        ];
+
+        foreach ($filters as $key => $condition) {
+            if ($condition !== null) {
+                $query .= $condition;
+            }
         }
 
         $query .= " GROUP BY p.id";
@@ -73,21 +89,25 @@ final class ProductRepository extends BaseRepository
     /**
      * Build the query parameters for fetching products.
      *
-     * @param string|null $categoryName Filter by category name.
-     * @param string|null $productId    Filter by product ID.
+     * @param string|null $category  Filter by category name.
+     * @param string|null $brand     Filter by brand name.
+     * @param string|null $productId Filter by product ID.
      * @return array<string, string|null> The query parameters as key-value pairs.
      */
     private function buildQueryParameters(
-        ?string $categoryName,
+        ?string $category,
+        ?string $brand,
         ?string $productId
     ): array {
-        $params = [];
-        if ($categoryName !== null) {
-            $params[':categoryName'] = $categoryName;
-        }
-        if ($productId !== null) {
-            $params[':productId'] = $productId;
-        }
-        return $params;
+        $params = [
+            ':category'  => $category,
+            ':brand'     => $brand,
+            ':productId' => $productId,
+        ];
+
+        return array_filter(
+            $params,
+            fn($value) => $value !== null
+        );
     }
 }

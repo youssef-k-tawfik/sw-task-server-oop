@@ -38,11 +38,13 @@ final class ProductService
      */
     public function getProducts(
         ?string $category = null,
+        ?string $brand = null,
         ?string $productId = null
     ): array {
         try {
             $results = $this->productRepository->getProducts(
                 $category,
+                $brand,
                 $productId
             );
             $products = $this->processProductResults($results);
