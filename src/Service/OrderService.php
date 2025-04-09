@@ -10,6 +10,7 @@ use App\Repository\OrderRepository;
 use App\Entity\Order\Order;
 use App\Entity\Order\OrderProduct;
 use App\Entity\Order\SelectedAttribute;
+use App\Factory\CurrencyFactory;
 use App\Factory\ProductFactory;
 use App\Utils\CustomLogger;
 
@@ -166,7 +167,9 @@ class OrderService
         return new Order(
             $row['order_number'],
             (float)$row['total_amount'],
-            $row['currency_label'],
+            CurrencyFactory::create(
+                $row['currency_label']
+            ),
             new \DateTime($row['placed_at'])
         );
     }

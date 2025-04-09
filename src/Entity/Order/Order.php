@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace App\Entity\Order;
 
+use App\Entity\Currency\BaseCurrency;
+
 /**
  * Represents an order entity.
  *
  * @property string         $orderNumber   The unique order number.
  * @property float          $totalAmount   The total amount of the order.
- * @property string         $currencyLabel The label of the currency used in the order.
+ * @property BaseCurrency    $currency      The currency used in the order.
  * @property \DateTime      $placedAt      The date and time when the order was placed.
  * @property OrderProduct[] $products      The list of products in the order.
  */
@@ -26,9 +28,9 @@ class Order
     private float $totalAmount;
 
     /**
-     * @var string The label of the currency used in the order.
+     * @var BaseCurrency The currency used in the order.
      */
-    private string $currencyLabel;
+    private BaseCurrency $currency;
 
     /**
      * @var \DateTime The date and time when the order was placed.
@@ -41,21 +43,21 @@ class Order
     private array $products = [];
 
     /**
-     * @param string    $orderNumber   The unique order number.
-     * @param float     $totalAmount   The total amount of the order.
-     * @param string    $currencyLabel The label of the currency used in the order.
-     * @param \DateTime $placedAt      The date and time when the order was placed.
+     * @param string       $orderNumber  The unique order number.
+     * @param float        $totalAmount  The total amount of the order.
+     * @param BaseCurrency $currency     The currency used in the order.
+     * @param \DateTime    $placedAt     The date and time when the order was placed.
      */
     public function __construct(
         string $orderNumber,
         float $totalAmount,
-        string $currencyLabel,
+        BaseCurrency $currency,
         \DateTime $placedAt
     ) {
-        $this->orderNumber   = $orderNumber;
-        $this->totalAmount   = $totalAmount;
-        $this->currencyLabel = $currencyLabel;
-        $this->placedAt      = $placedAt;
+        $this->orderNumber = $orderNumber;
+        $this->totalAmount = $totalAmount;
+        $this->currency    = $currency;
+        $this->placedAt    = $placedAt;
     }
 
     /**
@@ -79,13 +81,13 @@ class Order
     }
 
     /**
-     * Get the label of the currency used in the order.
+     * Get the currency used in the order.
      *
-     * @return string The label of the currency.
+     * @return BaseCurrency The currency used in the order.
      */
-    public function getCurrencyLabel(): string
+    public function getCurrency(): BaseCurrency
     {
-        return $this->currencyLabel;
+        return $this->currency;
     }
 
     /**

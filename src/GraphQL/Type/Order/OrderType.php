@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\GraphQL\Type\Order;
 
 use App\Config\Container;
+use App\GraphQL\Type\CurrencyType;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
 
@@ -31,9 +32,11 @@ class OrderType extends ObjectType
                     'type'    => Type::nonNull(Type::float()),
                     'resolve' => fn($order) => $order->getTotalAmount(),
                 ],
-                'currencyLabel' => [
-                    'type'    => Type::nonNull(Type::string()),
-                    'resolve' => fn($order) => $order->getCurrencyLabel(),
+                'currency' => [
+                    'type'    => Type::nonNull($container->get(
+                        CurrencyType::class
+                    )),
+                    'resolve' => fn($order) => $order->getCurrency(),
                 ],
                 'placedAt' => [
                     'type'    => Type::nonNull(Type::string()),
