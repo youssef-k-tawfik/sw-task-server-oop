@@ -50,11 +50,7 @@ try {
 }
 
 // Define allowed domains for CORS
-$allowed_domains = [
-    'https://sw-task-client.yousseftawfik.com',
-    'http://localhost:5173', // (development only)
-    'localhost:8000', // (development only)
-];
+$allowed_domains = explode(',', $_ENV['ALLOWED_DOMAINS'] ?? '');
 
 // Check if the request origin is allowed
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
