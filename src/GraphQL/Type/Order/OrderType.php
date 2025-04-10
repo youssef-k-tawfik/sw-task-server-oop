@@ -40,7 +40,7 @@ class OrderType extends ObjectType
                 ],
                 'placedAt' => [
                     'type'    => Type::nonNull(Type::string()),
-                    'resolve' => fn($order) => $order->getPlacedAt()->format('d M Y H:i'),
+                    'resolve' => fn($order) => $order->getPlacedAt()->format("F d, Y, h:i A"),
                 ],
                 'products' => [
                     'type'    => Type::listOf(
