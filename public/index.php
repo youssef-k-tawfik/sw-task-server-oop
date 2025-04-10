@@ -8,11 +8,6 @@ use App\Utils\CustomLogger;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-// Enable all error reporting (development only)
-error_reporting(E_ALL);
-// Display errors on the screen (development only)
-ini_set('display_errors', 1);
-
 // Load environment variables from the .env file
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
@@ -50,11 +45,7 @@ try {
 }
 
 // Define allowed domains for CORS
-$allowed_domains = [
-    'https://sw-task-client.yousseftawfik.com',
-    'http://localhost:5173', // (development only)
-    'localhost:8000', // (development only)
-];
+$allowed_domains = explode(',', $_ENV['ALLOWED_DOMAINS'] ?? '');
 
 // Check if the request origin is allowed
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
