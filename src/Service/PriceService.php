@@ -45,7 +45,8 @@ class PriceService
             CustomLogger::debug(__FILE__, __LINE__, $prices);
             return $prices;
         } catch (\Exception $e) {
-            throw new \Exception("Error fetching prices: {$e->getMessage()}");
+            CustomLogger::logInfo("Error fetching prices: {$e->getMessage()}");
+            throw new \Exception("error occurred while serving Prices!");
         }
     }
 

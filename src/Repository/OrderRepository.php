@@ -77,6 +77,15 @@ class OrderRepository extends BaseRepository
         }
     }
 
+    private function validateOrderNumbers(array $orderNumbers): void
+    {
+        foreach ($orderNumbers as $orderNumber) {
+            if (!is_string($orderNumber) || !preg_match('/^\d{8}[a-f0-9]{13}$/', $orderNumber)) {
+                throw new \InvalidArgumentException('order numbers are not valid');
+            }
+        }
+    }
+
     /**
      * Fetch order data based on an array of order numbers.
      *
@@ -89,8 +98,10 @@ class OrderRepository extends BaseRepository
             return [];
         }
 
+        $this->validateOrderNumbers($orderNumbers);
+
         // Prepare placeholders for the SQL query based on the number of order numbers
-        $placeholders = implode(',', array_fill(0, count($orderNumbers), '?'));
+        $placeholders = rtrim(str_repeat('?,', count($orderNumbers)), ',');
 
         $query = "
         SELECT 
