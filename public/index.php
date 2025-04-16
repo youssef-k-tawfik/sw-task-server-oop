@@ -18,31 +18,18 @@ CustomLogger::logInfo("Requested method: " . $_SERVER['REQUEST_METHOD']);
 // Initialize the Dependency Injection Container
 $container = new Container();
 
-// Initialize the Database connection
-$database = new Database();
-
 // Set up the database connection in the DI container
-$container->set(PDO::class, function () use ($database) {
+$container->set(PDO::class, function () {
     try {
+        $database = new Database();
         $database->connect();
-    } catch (\RuntimeException $e) {
+        return $database->getConnection();
+    } catch (PDOException $e) {
         http_response_code(500);
-        echo json_encode(['error' => 'Internal Server Error']);
+        echo json_encode(['error' => 'Internal Server Error - Database connection failed']);
         exit();
     }
-    return $database->getConnection();
 });
-
-try {
-    $database->connect();
-    CustomLogger::logInfo('Database connection established successfully.');
-    $container->set(PDO::class, $database->getConnection());
-} catch (\RuntimeException $e) {
-    CustomLogger::logInfo('Database connection failed: ' . $e->getMessage());
-    http_response_code(500);
-    echo json_encode(['error' => 'Internal Server Error']);
-    exit();
-}
 
 // Define allowed domains for CORS
 $allowed_domains = explode(',', $_ENV['ALLOWED_DOMAINS'] ?? '');
