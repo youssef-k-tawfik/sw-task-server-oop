@@ -4,13 +4,19 @@ declare(strict_types=1);
 
 namespace App\Entity\Product;
 
-use App\Entity\Category\TechCategory;
+use App\Factory\CategoryFactory;
 
 /**
  * Represents a product in the "tech" category.
  */
 final class TechProduct extends BaseProduct
 {
+
+    /**
+     * The category of the product.
+     */
+    private const CATEGORY = 'tech';
+
     /**
      * @param string $id          The unique identifier of the product.
      * @param string $name        The name of the product.
@@ -33,7 +39,7 @@ final class TechProduct extends BaseProduct
             $inStock,
             $gallery,
             $description,
-            new TechCategory(),
+            CategoryFactory::create(self::CATEGORY),
             $brand
         );
     }
