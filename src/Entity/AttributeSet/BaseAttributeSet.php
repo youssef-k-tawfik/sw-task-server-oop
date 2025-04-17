@@ -4,15 +4,17 @@ declare(strict_types=1);
 
 namespace App\Entity\AttributeSet;
 
+use App\Entity\Attribute\AttributeInterface;
+
 /**
  * Base class for attribute sets.
- *
- * @property string      $id    The unique identifier of the attribute set.
- * @property string      $name  The name of the attribute set.
- * @property string      $type  The type of the attribute set.
- * @property Attribute[] $items The list of attributes in the set.
+ * 
+ * @property string               $id    The unique identifier of the attribute set.
+ * @property string               $name  The name of the attribute set.
+ * @property string               $type  The type of the attribute set.
+ * @property AttributeInterface[] $items The list of attributes in the set.
  */
-abstract class BaseAttributeSet
+abstract class BaseAttributeSet implements AttributeSetInterface
 {
     /**
      * @var string The unique identifier of the attribute set.
@@ -52,43 +54,27 @@ abstract class BaseAttributeSet
         $this->items = $items;
     }
 
-    /**
-     * Get the ID of the attribute set.
-     *
-     * @return string The unique identifier of the attribute set.
-     */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * Get the name of the attribute set.
-     *
-     * @return string The name of the attribute set.
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * Get the type of the attribute set.
-     *
-     * @return string The type of the attribute set.
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * Add an attribute to the set.
-     *
-     * @param Attribute $item The attribute to add.
-     * @return self
-     */
-    public function addItem(Attribute $item): self
+    public function getItems(): array
+    {
+        return $this->items;
+    }
+
+    public function addItem(AttributeInterface $item): self
     {
         if (!in_array(
             $item,
@@ -101,23 +87,7 @@ abstract class BaseAttributeSet
         return $this;
     }
 
-    /**
-     * Get all attributes in the set.
-     *
-     * @return Attribute[] The list of attributes in the set.
-     */
-    public function getItems(): array
-    {
-        return $this->items;
-    }
-
-    /**
-     * Check if the set contains a specific attribute.
-     *
-     * @param Attribute $attribute The attribute to check.
-     * @return bool True if the attribute exists in the set, false otherwise.
-     */
-    public function hasItem(Attribute $attribute): bool
+    public function hasItem(AttributeInterface $attribute): bool
     {
         foreach ($this->items as $existingAttribute) {
             if ($existingAttribute->getId() === $attribute->getId()) {
