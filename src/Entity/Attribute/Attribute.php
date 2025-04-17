@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Entity\AttributeSet;
+namespace App\Entity\Attribute;
 
 /**
  * Represents an attribute within an attribute set.
@@ -11,7 +11,7 @@ namespace App\Entity\AttributeSet;
  * @property string $value        The value of the attribute.
  * @property string $displayValue The display value of the attribute.
  */
-final class Attribute
+final class Attribute implements AttributeInterface
 {
     /**
      * @var string The unique identifier of the attribute.
@@ -43,31 +43,16 @@ final class Attribute
         $this->displayValue = $displayValue;
     }
 
-    /**
-     * Get the unique identifier of the attribute.
-     *
-     * @return string The unique identifier of the attribute.
-     */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * Get the value of the attribute.
-     *
-     * @return string The value of the attribute.
-     */
     public function getValue(): string
     {
         return $this->value;
     }
 
-    /**
-     * Get the display value of the attribute.
-     *
-     * @return string The display value of the attribute.
-     */
     public function getDisplayValue(): string
     {
         return $this->displayValue;

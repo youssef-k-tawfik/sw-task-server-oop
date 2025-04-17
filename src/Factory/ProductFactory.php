@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Factory;
 
-use App\Entity\Product\BaseProduct;
+use App\Entity\Product\ProductInterface;
 use App\Entity\Product\TechProduct;
 use App\Entity\Product\ClothesProduct;
 
@@ -31,7 +31,7 @@ class ProductFactory
      * @param string $description The description of the product.
      * @param string $category    The category of the product (e.g., "tech", "clothes").
      * @param string $brand       The brand of the product.
-     * @return BaseProduct        The created product instance.
+     * @return ProductInterface        The created product instance.
      * @throws \InvalidArgumentException If the product category is unknown.
      */
     public static function create(
@@ -42,7 +42,7 @@ class ProductFactory
         string $description,
         string $category,
         string $brand
-    ): BaseProduct {
+    ): ProductInterface {
         $category = strtolower($category);
         if (!isset(self::$productMap[$category])) {
             throw new \InvalidArgumentException("Unknown product category: {$category}");

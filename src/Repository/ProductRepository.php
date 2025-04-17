@@ -4,19 +4,18 @@ declare(strict_types=1);
 
 namespace App\Repository;
 
-use App\Entity\Product\BaseProduct;
-
 /**
  * Repository class for managing product-related database operations.
  */
 final class ProductRepository extends BaseRepository
 {
     /**
-     * Retrieve all products with optional filters for category and product ID.
+     * Retrieve all products with optional filters for category, brand, and product ID.
      *
-     * @param string|null $category Filter by category name.
-     * @param string|null $productId    Filter by product ID.
-     * @return BaseProduct[] List of hydrated product entities.
+     * @param string|null $category  Filter by category name (optional).
+     * @param string|null $brand     Filter by brand name (optional).
+     * @param string|null $productId Filter by product ID (optional).
+     * @return array<int, array<string, mixed>> List of products as associative arrays.
      */
     public function getProducts(
         ?string $category = null,

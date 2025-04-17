@@ -31,7 +31,9 @@ final class Container implements ContainerInterface
     public function get(string $id)
     {
         if ($this->has($id)) {
-            return self::$container[$id];
+            $service = self::$container[$id];
+            // If the service is a Closure, invoke it to resolve the instance
+            return $service instanceof \Closure ? $service() : $service;
         }
 
         return $this->resolve($id);

@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace App\Entity\Order;
 
-use App\Entity\Currency\BaseCurrency;
+use App\Entity\Currency\CurrencyInterface;
 
 /**
  * Represents an order entity.
  *
- * @property string         $orderNumber   The unique order number.
- * @property float          $totalAmount   The total amount of the order.
- * @property BaseCurrency    $currency      The currency used in the order.
- * @property \DateTime      $placedAt      The date and time when the order was placed.
- * @property OrderProduct[] $products      The list of products in the order.
+ * @property string            $orderNumber   The unique order number.
+ * @property float             $totalAmount   The total amount of the order.
+ * @property CurrencyInterface $currency      The currency used in the order.
+ * @property \DateTime         $placedAt      The date and time when the order was placed.
+ * @property OrderProduct[]    $products      The list of products in the order.
  */
 class Order
 {
@@ -28,9 +28,9 @@ class Order
     private float $totalAmount;
 
     /**
-     * @var BaseCurrency The currency used in the order.
+     * @var CurrencyInterface The currency used in the order.
      */
-    private BaseCurrency $currency;
+    private CurrencyInterface $currency;
 
     /**
      * @var \DateTime The date and time when the order was placed.
@@ -45,13 +45,13 @@ class Order
     /**
      * @param string       $orderNumber  The unique order number.
      * @param float        $totalAmount  The total amount of the order.
-     * @param BaseCurrency $currency     The currency used in the order.
+     * @param CurrencyInterface $currency     The currency used in the order.
      * @param \DateTime    $placedAt     The date and time when the order was placed.
      */
     public function __construct(
         string $orderNumber,
         float $totalAmount,
-        BaseCurrency $currency,
+        CurrencyInterface $currency,
         \DateTime $placedAt
     ) {
         $this->orderNumber = $orderNumber;
@@ -83,9 +83,9 @@ class Order
     /**
      * Get the currency used in the order.
      *
-     * @return BaseCurrency The currency used in the order.
+     * @return CurrencyInterface The currency used in the order.
      */
-    public function getCurrency(): BaseCurrency
+    public function getCurrency(): CurrencyInterface
     {
         return $this->currency;
     }

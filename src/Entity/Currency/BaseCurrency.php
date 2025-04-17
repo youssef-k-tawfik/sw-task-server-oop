@@ -10,7 +10,7 @@ namespace App\Entity\Currency;
  * @property string $label  The label of the currency (e.g., "USD").
  * @property string $symbol The symbol of the currency (e.g., "$").
  */
-abstract class BaseCurrency
+abstract class BaseCurrency implements CurrencyInterface
 {
     /**
      * @var string The label of the currency (e.g., "USD").
@@ -34,21 +34,11 @@ abstract class BaseCurrency
         $this->symbol = $symbol;
     }
 
-    /**
-     * Get the label of the currency.
-     *
-     * @return string The label of the currency.
-     */
     public function getLabel(): string
     {
         return $this->label;
     }
 
-    /**
-     * Get the symbol of the currency.
-     *
-     * @return string The symbol of the currency.
-     */
     public function getSymbol(): string
     {
         return $this->symbol;
