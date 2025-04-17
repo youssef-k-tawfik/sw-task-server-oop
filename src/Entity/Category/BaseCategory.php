@@ -9,7 +9,7 @@ namespace App\Entity\Category;
  *
  * @property string $name The name of the category.
  */
-abstract class BaseCategory
+abstract class BaseCategory implements CategoryInterface
 {
     /**
      * @var string The name of the category.
@@ -24,11 +24,6 @@ abstract class BaseCategory
         $this->name = strtolower(trim($name));
     }
 
-    /**
-     * Get the name of the category.
-     *
-     * @return string The name of the category.
-     */
     public function getName(): string
     {
         return $this->name;
