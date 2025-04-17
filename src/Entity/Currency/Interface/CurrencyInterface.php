@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Entity\Currency;
+namespace App\Entity\Currency\Interface;
 
 /**
  * Interface for currency entities.

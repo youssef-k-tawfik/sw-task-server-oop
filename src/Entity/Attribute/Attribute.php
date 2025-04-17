@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Entity\Attribute;
 
+use App\Entity\Attribute\Interface\AttributeInterface;
+
 /**
  * Represents an attribute within an attribute set.
  *

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Factory;
 
-use App\Entity\Currency\CurrencyInterface;
+use App\Entity\Currency\Interface\CurrencyInterface;
 use App\Entity\Currency\USD;
 
 /**

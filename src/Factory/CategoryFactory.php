@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Factory;
 
-use App\Entity\Category\CategoryInterface;
+use App\Entity\Category\Interface\CategoryInterface;
 use App\Entity\Category\AllCategory;
 use App\Entity\Category\TechCategory;
 use App\Entity\Category\ClothesCategory;

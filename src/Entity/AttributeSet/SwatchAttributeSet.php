@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Entity\AttributeSet;
 
+use App\Entity\AttributeSet\Base\BaseAttributeSet;
+
 /**
  * Represents a swatch attribute set.
  */

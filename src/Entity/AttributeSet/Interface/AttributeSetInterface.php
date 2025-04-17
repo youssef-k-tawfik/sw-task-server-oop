@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Entity\AttributeSet;
+namespace App\Entity\AttributeSet\Interface;
 
 use App\Entity\Attribute\Attribute;
-use App\Entity\Attribute\AttributeInterface;
+use App\Entity\Attribute\Interface\AttributeInterface;
 
 interface AttributeSetInterface
 {

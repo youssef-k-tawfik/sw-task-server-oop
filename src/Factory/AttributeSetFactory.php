@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Factory;
 
-use App\Entity\AttributeSet\AttributeSetInterface;
+use App\Entity\AttributeSet\Interface\AttributeSetInterface;
 use App\Entity\AttributeSet\TextAttributeSet;
 use App\Entity\AttributeSet\SwatchAttributeSet;
 

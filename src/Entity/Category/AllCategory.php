@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Entity\Category;
 
+use App\Entity\Category\Base\BaseCategory;
+
 /**
  * Represents the "all" category.
  */

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity\Product;
 
+use App\Entity\Product\Base\BaseProduct;
 use App\Factory\CategoryFactory;
 
 /**

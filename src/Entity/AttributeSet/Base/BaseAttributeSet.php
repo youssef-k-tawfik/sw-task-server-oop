@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Entity\AttributeSet;
+namespace App\Entity\AttributeSet\Base;
 
-use App\Entity\Attribute\AttributeInterface;
+use App\Entity\Attribute\Interface\AttributeInterface;
+use App\Entity\AttributeSet\Interface\AttributeSetInterface;
 
 /**
  * Base class for attribute sets.

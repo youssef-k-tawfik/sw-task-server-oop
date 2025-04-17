@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Entity\Currency;
+namespace App\Entity\Currency\Base;
+
+use App\Entity\Currency\Interface\CurrencyInterface;
 
 /**
  * Base class for currencies.

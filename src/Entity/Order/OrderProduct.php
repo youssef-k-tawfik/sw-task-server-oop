@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity\Order;
 
-use App\Entity\Product\ProductInterface;
+use App\Entity\Product\Interface\ProductInterface;
 
 /**
  * Represents a product in an order.

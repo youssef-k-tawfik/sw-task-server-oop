@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Entity\Currency;
 
+use App\Entity\Currency\Base\BaseCurrency;
+
 /**
  * Represents the United States Dollar (USD) currency.
  */

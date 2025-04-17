@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Factory;
 
-use App\Entity\Product\ProductInterface;
+use App\Entity\Product\Interface\ProductInterface;
 use App\Entity\Product\TechProduct;
 use App\Entity\Product\ClothesProduct;
 

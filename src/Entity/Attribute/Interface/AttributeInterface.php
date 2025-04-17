@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Entity\Attribute;
+namespace App\Entity\Attribute\Interface;
 
 interface AttributeInterface
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Entity\Category;
+namespace App\Entity\Category\Interface;
 
 /**
  * Interface for category entities.

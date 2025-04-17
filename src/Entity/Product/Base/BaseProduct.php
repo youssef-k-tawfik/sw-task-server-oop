@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Entity\Product;
+namespace App\Entity\Product\Base;
 
-use App\Entity\Category\CategoryInterface;
+use App\Entity\Category\Interface\CategoryInterface;
+use App\Entity\Product\Interface\ProductInterface;
 
 /**
  * Base class for products.

@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Entity\Category;
+namespace App\Entity\Category\Base;
+
+use App\Entity\Category\Interface\CategoryInterface;
 
 /**
  * Base class for categories.
