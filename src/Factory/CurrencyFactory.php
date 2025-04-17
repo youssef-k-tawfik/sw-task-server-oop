@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Factory;
 
-use App\Entity\Currency\BaseCurrency;
+use App\Entity\Currency\CurrencyInterface;
 use App\Entity\Currency\USD;
 
 /**
@@ -23,10 +23,10 @@ class CurrencyFactory
      * Create a currency instance.
      *
      * @param string $currencyLabel The label of the currency (e.g., "USD").
-     * @return BaseCurrency         The created currency instance.
+     * @return CurrencyInterface         The created currency instance.
      * @throws \InvalidArgumentException If the currency label is unknown.
      */
-    public static function create(string $currencyLabel): BaseCurrency
+    public static function create(string $currencyLabel): CurrencyInterface
     {
         $currencyLabel = strtoupper($currencyLabel);
 

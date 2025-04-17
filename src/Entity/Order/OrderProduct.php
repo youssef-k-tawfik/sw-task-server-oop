@@ -4,21 +4,21 @@ declare(strict_types=1);
 
 namespace App\Entity\Order;
 
-use App\Entity\Product\BaseProduct;
+use App\Entity\Product\ProductInterface;
 
 /**
  * Represents a product in an order.
  *
- * @property BaseProduct         $product            The product associated with the order.
+ * @property ProductInterface    $product            The product associated with the order.
  * @property int                 $quantity           The quantity of the product in the order.
  * @property SelectedAttribute[] $selectedAttributes The selected attributes for the product.
  */
 class OrderProduct
 {
     /**
-     * @var BaseProduct The product associated with the order.
+     * @var ProductInterface The product associated with the order.
      */
-    private BaseProduct $product;
+    private ProductInterface $product;
 
     /**
      * @var int The quantity of the product in the order.
@@ -31,14 +31,14 @@ class OrderProduct
     private array $selectedAttributes;
 
     /**
-     * @param BaseProduct         $product            The product associated with the order.
+     * @param ProductInterface    $product            The product associated with the order.
      * @param int                 $quantity           The quantity of the product in the order.
      * @param SelectedAttribute[] $selectedAttributes The selected attributes for the product.
      */
     public function __construct(
-        BaseProduct  $product,
-        int          $quantity,
-        array        $selectedAttributes
+        ProductInterface  $product,
+        int               $quantity,
+        array             $selectedAttributes
     ) {
         $this->product            = $product;
         $this->quantity           = $quantity;
@@ -48,9 +48,9 @@ class OrderProduct
     /**
      * Get the product associated with the order.
      *
-     * @return BaseProduct The product.
+     * @return ProductInterface The product.
      */
-    public function getProduct(): BaseProduct
+    public function getProduct(): ProductInterface
     {
         return $this->product;
     }

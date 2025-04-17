@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-use App\Entity\AttributeSet\Attribute;
+use App\Entity\Attribute\Attribute;
 use App\Factory\AttributeSetFactory;
 use App\Repository\AttributesRepository;
 use App\Utils\CustomLogger;

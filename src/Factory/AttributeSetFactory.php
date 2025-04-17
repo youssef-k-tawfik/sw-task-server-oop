@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Factory;
 
-use App\Entity\AttributeSet\BaseAttributeSet;
+use App\Entity\AttributeSet\AttributeSetInterface;
 use App\Entity\AttributeSet\TextAttributeSet;
 use App\Entity\AttributeSet\SwatchAttributeSet;
 
@@ -28,7 +28,7 @@ class AttributeSetFactory
      * @param string $name  Display name of the attribute set.
      * @param string $type  Either "text" or "swatch".
      * @param array  $items Array of attribute items.
-     * @return BaseAttributeSet The created attribute set.
+     * @return AttributeSetInterface The created attribute set.
      * @throws \InvalidArgumentException If the attribute set type is unknown.
      */
     public static function create(
@@ -36,7 +36,7 @@ class AttributeSetFactory
         string $name,
         string $type,
         array  $items = []
-    ): BaseAttributeSet {
+    ): AttributeSetInterface {
         $type = strtolower($type);
         if (!isset(self::$attributeSetMap[$type])) {
             throw new \InvalidArgumentException("Unknown attribute set type: {$type}");
