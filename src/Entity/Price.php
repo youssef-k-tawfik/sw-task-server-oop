@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use App\Entity\Currency\BaseCurrency;
+use App\Entity\Currency\CurrencyInterface;
 
 /**
  * Represents a price with an amount and currency.
  *
- * @property float        $amount   The monetary amount.
- * @property BaseCurrency $currency The currency of the price.
+ * @property float             $amount   The monetary amount.
+ * @property CurrencyInterface $currency The currency of the price.
  */
 class Price
 {
@@ -20,17 +20,17 @@ class Price
     private float $amount;
 
     /**
-     * @var BaseCurrency The currency of the price.
+     * @var CurrencyInterface The currency of the price.
      */
-    private BaseCurrency $currency;
+    private CurrencyInterface $currency;
 
     /**
      * @param float        $amount   The monetary amount.
-     * @param BaseCurrency $currency The currency of the price.
+     * @param CurrencyInterface $currency The currency of the price.
      */
     public function __construct(
         float $amount,
-        BaseCurrency $currency
+        CurrencyInterface $currency
     ) {
         $this->amount   = $amount;
         $this->currency = $currency;
@@ -49,9 +49,9 @@ class Price
     /**
      * Get the currency of the price.
      *
-     * @return BaseCurrency The currency of the price.
+     * @return CurrencyInterface The currency of the price.
      */
-    public function getCurrency(): BaseCurrency
+    public function getCurrency(): CurrencyInterface
     {
         return $this->currency;
     }
