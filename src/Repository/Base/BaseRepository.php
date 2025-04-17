@@ -2,14 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Repository;
+namespace App\Repository\Base;
 
+use App\Repository\Interface\RepositoryInterface;
 use PDO;
 
 /**
  * Base repository providing common database operations.
  */
-abstract class BaseRepository
+abstract class BaseRepository implements RepositoryInterface
 {
     /**
      * @var PDO The database connection instance.
@@ -26,25 +27,16 @@ abstract class BaseRepository
         $this->connection = $connection;
     }
 
-    /**
-     * Begin a database transaction.
-     */
     public function beginTransaction(): void
     {
         $this->connection->beginTransaction();
     }
 
-    /**
-     * Commit the current database transaction.
-     */
     public function commit(): void
     {
         $this->connection->commit();
     }
 
-    /**
-     * Roll back the current database transaction.
-     */
     public function rollBack(): void
     {
         $this->connection->rollBack();
